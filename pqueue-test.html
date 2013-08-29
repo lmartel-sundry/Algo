@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1 style="text-align: center;">CHECK THE CONSOLE</h1>
+<script src="pqueue.js"></script>
+<script>
+    function test(msg, expected, actual){
+        if(expected === actual){
+            console.log("success: " + msg);
+        } else throw msg + ": expected " + expected + ", got " + actual;
+    }
+
+    var pq = new PriorityQueue();
+    test("size should start at 0", 0, pq.size());
+
+    pq.push("five", 5);
+    test("should not be empty", false, pq.empty());
+
+    pq.push("three", 3);
+    pq.push("seven", 7);
+    pq.push("eleven", 11);
+    pq.push("one", 1);
+    pq.push("two", 2);
+
+    test("size should be 6", 6, pq.size());
+    test("one should be on top", "one", pq.pop());
+
+    test("two should be on top", "two", pq.pop());
+    test("size should be 4", 4, pq.size());
+    pq.push("one", 1);
+    test("one should be on top", "one", pq.pop());
+
+    test("three should be on top", "three", pq.pop());
+
+    test("five should be on top", "five", pq.peek());
+    pq.push("four", 4);
+    test("four should be on top", "four", pq.pop());
+    test("five should be on top", "five", pq.pop());
+
+
+    test("seven should be on top", "seven", pq.pop());
+
+    test("eleven should be on top", "eleven", pq.peek());
+    test("eleven should be on top", "eleven", pq.pop());
+
+    pq.clear();
+    test("size should be 0", 0, pq.size());
+    test("pop should not error", undefined, pq.pop());
+
+    test("WELP GOOD ENOUGH FOR ME, I'VE GOT SHIT TO DO", true, true);
+</script>
+</body>
+</html>
