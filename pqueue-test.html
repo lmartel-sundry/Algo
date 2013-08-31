@@ -50,6 +50,14 @@
     test("size should be 0", 0, pq.size());
     test("pop should not error", undefined, pq.pop());
 
+    pq = new PriorityQueue(function(a, b){
+        return a > b;
+    });
+
+    pq.push("one", 1);
+    pq.push("seven", 7);
+    test("custom comparator should work: seven on top", "seven", pq.pop());
+
     test("WELP GOOD ENOUGH FOR ME, I'VE GOT SHIT TO DO", true, true);
 </script>
 </body>
