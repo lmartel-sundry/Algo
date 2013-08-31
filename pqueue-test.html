@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1 style="text-align: center;">CHECK THE CONSOLE</h1>
-<script src="pqueue.js"></script>
+<script src="../../../Algo/pqueue.js"></script>
 <script>
     function test(msg, expected, actual){
         if(expected === actual){
@@ -32,19 +32,21 @@
     test("size should be 4", 4, pq.size());
     pq.push("one", 1);
     test("one should be on top", "one", pq.pop());
+    test("seven's gotta go", "seven", pq.remove("seven"));
 
     test("three should be on top", "three", pq.pop());
 
     test("five should be on top", "five", pq.peek());
     pq.push("four", 4);
     test("four should be on top", "four", pq.pop());
-    test("five should be on top", "five", pq.pop());
+    pq.move("five", 12);
 
-
-    test("seven should be on top", "seven", pq.pop());
-
+    // Five should have been changed; seven should have been removed already
     test("eleven should be on top", "eleven", pq.peek());
     test("eleven should be on top", "eleven", pq.pop());
+
+    // Five should have been reassigned
+    test("five should be on top", "five", pq.pop());
 
     pq.clear();
     test("size should be 0", 0, pq.size());

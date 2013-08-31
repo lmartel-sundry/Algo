@@ -1,7 +1,7 @@
 /**
-* PriorityQueue implementation by Leo Martel (http://lpm.io)
-* Use it if you want it; MIT License.
-*/
+ * PriorityQueue implementation by Leo Martel (http://lpm.io)
+ * Use it if you want it; MIT License.
+ */
 
 PriorityQueue = _PriorityQueue;
 function _PriorityQueue(compare){
@@ -77,6 +77,39 @@ function _PriorityQueue(compare){
         }
 
     }
+
+    /**
+     * Find the object-to-remove,
+     * bubble it to the root, then pop it.
+     */
+    PriorityQueue.prototype.remove = remove;
+    function remove(value){
+        var ri = -1;
+        for(var i = 0; i < this.length; i++){
+            var found = this.heap[i].elem;
+            if(value === found){
+                ri = i;
+                break;
+            }
+        }
+        if(ri === -1) return undefined;
+        var toRemove = get(this, ri);
+        while(ri > 1){
+            var pi = parentIndex(ri);
+            var parent = get(this, pi);
+            set(this, pi, toRemove);
+            set(this, ri, parent);
+            ri = pi;
+        }
+        return this.pop();
+    }
+
+    PriorityQueue.prototype.move = move;
+    function move(value, newPriority){
+        this.remove(value);
+        this.push(value, newPriority);
+    }
+
     PriorityQueue.prototype.peek = peek;
     function peek(){
         if(this.length === 0) return undefined;
