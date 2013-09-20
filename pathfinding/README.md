@@ -37,7 +37,7 @@ function A_star(all, start, target, options)
  *          Default: always guesses 0. This reduces A* to Dijkstra's algorithm.
  *      cost: function(Location) => {Number}                a function that calculates the movement cost through the given location.
  *          Default: all Locations cost 1 to move through.
-
+```
 
 MIT License
 -----------
